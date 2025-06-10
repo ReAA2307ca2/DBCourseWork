@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using DBCourseWork.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBCourseWork.Models;
+namespace DBCourseWork.Data;
 
 public partial class ReAaContext : DbContext
 {
