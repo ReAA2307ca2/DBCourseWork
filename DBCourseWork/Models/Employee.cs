@@ -13,6 +13,10 @@ public partial class Employee
 
     public string? Name { get; set; }
 
+    public int? FkRole { get; set; }
+
+    public virtual Role? FkRoleNavigation { get; set; }
+
     public virtual Team? FkTeamNavigation { get; set; }
 
     public virtual Workplace? FkWorkplaceNavigation { get; set; }

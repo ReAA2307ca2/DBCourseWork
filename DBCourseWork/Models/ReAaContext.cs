@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using DBCourseWork.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBCourseWork.Data;
+namespace DBCourseWork.Models;
 
 public partial class ReAaContext : DbContext
 {
@@ -33,6 +32,8 @@ public partial class ReAaContext : DbContext
     public virtual DbSet<Order> Orders { get; set; }
 
     public virtual DbSet<Part> Parts { get; set; }
+
+    public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<Site> Sites { get; set; }
 
@@ -64,7 +65,7 @@ public partial class ReAaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024; Database=ReAA;TrustServerCertificate=True;Integrated Security=True;");
+        => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=ReAA;TrustServerCertificate=True;Integrated Security=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -111,9 +112,14 @@ public partial class ReAaContext : DbContext
 
             entity.ToTable("Employee");
 
+            entity.Property(e => e.FkRole).HasColumnName("FK_Role");
             entity.Property(e => e.FkTeam).HasColumnName("FK_Team");
             entity.Property(e => e.FkWorkplace).HasColumnName("FK_Workplace");
             entity.Property(e => e.Name).HasMaxLength(255);
+
+            entity.HasOne(d => d.FkRoleNavigation).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.FkRole)
+                .HasConstraintName("FK__Employee__FK_Rol__71F1E3A2");
 
             entity.HasOne(d => d.FkTeamNavigation).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.FkTeam)
@@ -214,6 +220,15 @@ public partial class ReAaContext : DbContext
             entity.HasOne(d => d.FkStorageCellNavigation).WithMany(p => p.Parts)
                 .HasForeignKey(d => d.FkStorageCell)
                 .HasConstraintName("FK__Part__FK_Storage__68687968");
+        });
+
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC070177BE75");
+
+            entity.ToTable("Role");
+
+            entity.Property(e => e.Name).HasMaxLength(255);
         });
 
         modelBuilder.Entity<Site>(entity =>
