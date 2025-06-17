@@ -1,0 +1,24 @@
+﻿<Window x:Class="DBCourseWork.Views.CreateNewTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBCourseWork.Views"
+        mc:Ignorable="d"
+        Title="CreateNewTaskWindow" Height="250" Width="200">
+    <StackPanel>
+        <Label Content="Stage"></Label>
+        <TextBox Name="tb_Stage" />
+
+        <Label Content="Workplace"></Label>
+        <TextBox Name="tb_Workplace" />
+
+        <Label Content="Worker"></Label>
+        <ComboBox Name="cb_Workers"/>
+
+        <Label Content="Parts"></Label>
+        <TextBox Name="tb_Parts"/>
+
+        <Button Click="bt_Create_Click_1" Content="Create" Name="bt_Create"/>
+    </StackPanel>
+</Window>

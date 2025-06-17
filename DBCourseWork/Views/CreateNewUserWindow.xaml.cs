@@ -12,30 +12,33 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DBCourseWork.Data;
+using DBCourseWork.Models;
 
 namespace DBCourseWork.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RegisterWindow.xaml
+    /// Логика взаимодействия для CreateNewUserWindow.xaml
     /// </summary>
-    public partial class RegisterWindow : Window
+    public partial class CreateNewUserWindow : Window
     {
         private ReAaContext _context;
-        public RegisterWindow(ReAaContext context)
+        public CreateNewUserWindow(ReAaContext context)
         {
             _context = context;
-
             InitializeComponent();
         }
 
-        private void bt_login_Click(object sender, RoutedEventArgs e)
+        private void bt_Create_Click(object sender, RoutedEventArgs e)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Name == tb_login.Text && u.password == tb_password.Text);
-            if(user == null) {
-                MessageBox.Show("User not found");
-                return;
-            }
-            UserCookies.LoggedUser = user!;
+            User newUser = new()
+            {
+                Name = tb_Name.Text,
+                password = tb_password.Text,
+                Role = _context.Roles.FirstOrDefault(r => r.Name == "user")
+            };
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+
             DialogResult = true;
             return;
         }

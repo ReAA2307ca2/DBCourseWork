@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="DBCourseWork.Views.UserControls.AdminUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DBCourseWork.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <TabControl>
+        <TabItem Header="Order">
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="lb_Orders" Width="600"></ListBox>
+                <StackPanel Margin="15 0 0 0">
+                    <Button Click="bt_createOrder_Click" Name="bt_createOrder" Content="Add new"/>
+                    <Button Click="bt_deleteOrder_Click" Name="bt_deleteOrder" Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Workers">
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="lb_Workers" Width="600"></ListBox>
+                <StackPanel Margin="15 0 0 0">
+                    <Button Click="bt_createWorker_Click" Name="bt_createWorker" Content="Add new"/>
+                    <Button Click="bt_deleteWorker_Click" Name="bt_deleteWorker" Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Tasks">
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="lb_Tasks" Width="600"></ListBox>
+                <StackPanel Margin="15 0 0 0">
+                    <Button Click="bt_createTask_Click" Name="bt_createTask" Content="Add new"/>
+                    <Button Click="bt_deleteTask_Click" Name="bt_deleteTask" Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

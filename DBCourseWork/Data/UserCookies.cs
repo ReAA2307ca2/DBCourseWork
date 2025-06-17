@@ -9,6 +9,6 @@ namespace DBCourseWork.Data
 {
     public class UserCookies
     {
-        public static Employee LoggedUser { get; set; }
+        public static User LoggedUser { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿<Window x:Class="DBCourseWork.Views.CreateNewOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBCourseWork.Views"
+        mc:Ignorable="d"
+        Title="CreateNewOrderWindow" Height="250" Width="200">
+    <StackPanel>
+        <Label Content="Client Name"></Label>
+        <TextBox Name="tb_clientName" />
+        
+        <Label Content="Description"></Label>
+        <TextBox Height="130" Name="tb_description" />
+        <Button Click="bt_Create_Click" Content="Add" Name="bt_Create" />
+    </StackPanel>
+</Window>

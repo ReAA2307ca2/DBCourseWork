@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <UserControl Name="uc_MainControl"></UserControl>
+        <UserControl Height="400" Width="750" Name="uc_MainControl"></UserControl>
     </StackPanel>
 </Window>

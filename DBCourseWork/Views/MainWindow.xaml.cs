@@ -9,7 +9,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DBCourseWork.Data;
+using DBCourseWork.Models;
 using DBCourseWork.Views;
+using DBCourseWork.Views.UserControls;
 
 namespace DBCourseWork
 {
@@ -29,8 +31,19 @@ namespace DBCourseWork
                 {
                     this.Close();
                 }
+                InitializeComponent();
+
+                switch(UserCookies.LoggedUser.Role.Name)
+                {
+                    case "admin":
+                        AdminUC adminWin = new AdminUC(_context);
+                        uc_MainControl.Content = adminWin;
+                        break;
+                    case "user":
+                        
+                        break;
+                }
             }
-            InitializeComponent();
             
         }
     }
