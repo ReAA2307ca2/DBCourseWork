@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DBCourseWork.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DBCourseWork.Views
 {
@@ -30,12 +31,12 @@ namespace DBCourseWork.Views
 
         private void bt_login_Click(object sender, RoutedEventArgs e)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Name == tb_login.Text && u.password == tb_password.Text);
+            var user = _context.Users.Include(r => r.Role).FirstOrDefault(u => u.Name == tb_login.Text && u.password == tb_password.Text);
             if(user == null) {
                 MessageBox.Show("User not found");
                 return;
             }
-            UserCookies.LoggedUser = user!;
+            UserCookies.LoggedUser = user;
             DialogResult = true;
             return;
         }

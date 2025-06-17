@@ -28,16 +28,24 @@ namespace DBCourseWork.Views
             _context = context;
 
             cb_Workers.ItemsSource = _context.Users.Where(u => u.Role.Name != "admin").ToList();
+            cb_Orders.ItemsSource = _context.Orders.ToList();
         }
         private void bt_Create_Click_1(object sender, RoutedEventArgs e)
         {
             Models.Task newTask = new()
             {
+                Order = (Order)cb_Orders.SelectedItem,
                 Name = tb_Stage.Text,
                 Parts = tb_Parts.Text,
-                Workplace = tb_Workplace.Text,
-                
+                Workplace = int.Parse(tb_Workplace.Text),
+                Worker = (User)cb_Workers.SelectedItem
             };
+
+            _context.Tasks.Add(newTask);
+            _context.SaveChanges();
+
+            DialogResult = true;
+            return;
         }
     }
 }

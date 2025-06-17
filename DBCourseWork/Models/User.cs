@@ -13,10 +13,13 @@ namespace DBCourseWork.Models
         public string Name { get; set; }
         public string password { get; set; }
         public Role Role { get; set; }
+        public Team? Team { get; set; }
 
         public override string ToString()
         {
-            return $"User: {Name} with role: {Role}";
+            string addTeam = Team != null ? $", in  team #{Team.Id}" : "";
+
+            return $"User: {Name} with role: {Role}{addTeam}";
         }
     }
 }

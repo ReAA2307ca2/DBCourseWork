@@ -30,9 +30,11 @@ namespace DBCourseWork.Views.UserControls
             _context = context;
             InitializeComponent();
 
-            lb_Orders.ItemsSource = _context.Orders.Local.ToObservableCollection();
             lb_Workers.ItemsSource = _context.Users.Local.ToObservableCollection();
+            lb_Orders.ItemsSource = _context.Orders.Local.ToObservableCollection();
             lb_Tasks.ItemsSource = _context.Tasks.Local.ToObservableCollection();
+            lb_furniture.ItemsSource = _context.Furnitures.Local.ToObservableCollection();
+            lb_Teams.ItemsSource = _context.Teams.Local.ToObservableCollection();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -61,12 +63,14 @@ namespace DBCourseWork.Views.UserControls
 
         private void bt_createTask_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateNewTaskWindow newWin = new(_context);
+            newWin.ShowDialog();
         }
 
         private void bt_deleteTask_Click(object sender, RoutedEventArgs e)
         {
-
+            _context.Tasks.Remove((Models.Task)lb_Tasks.SelectedItem);
+            _context.SaveChanges();
         }
 
         private void bt_createWorker_Click(object sender, RoutedEventArgs e)
@@ -80,6 +84,42 @@ namespace DBCourseWork.Views.UserControls
             if (lb_Workers.SelectedItem != null)
             {
                 _context.Users.Remove((User)lb_Workers.SelectedItem);
+                _context.SaveChanges();
+            }
+        }
+
+        private void bt_createFurniture_Click(object sender, RoutedEventArgs e)
+        {
+            CreateFurnitureWindow newWin = new(_context);
+            newWin.ShowDialog();
+        }
+
+        private void bt_deleteFurniture_Click(object sender, RoutedEventArgs e)
+        {
+            if(lb_furniture.SelectedItem != null)
+            {
+                _context.Furnitures.Remove((Furniture)lb_furniture.SelectedItem);
+                _context.SaveChanges();
+            }
+        }
+
+        private void bt_createTeam_Click(object sender, RoutedEventArgs e)
+        {
+            Team newTeam = new Team();
+            _context.Teams.Add(newTeam);
+            _context.SaveChanges();
+        }
+
+        private void bt_deleteTeam_Click(object sender, RoutedEventArgs e)
+        {
+            if(lb_Teams.SelectedItem != null)
+            {
+                var teamMemebers = _context.Users.Where(u => u.Team == (Team)lb_Teams.SelectedItem).ToList();
+                foreach(User member in teamMemebers)
+                {
+                    member.Team = null;
+                }
+                _context.Teams.Remove((Team)lb_Teams.SelectedItem);
                 _context.SaveChanges();
             }
         }

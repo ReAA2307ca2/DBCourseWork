@@ -10,8 +10,11 @@
         <Label Content="Name"></Label>
         <TextBox Name="tb_Name" />
 
-        <Label Content="password"></Label>
+        <Label Content="Password"></Label>
         <TextBox Name="tb_password" />
+
+        <Label Content="Team"></Label>
+        <ComboBox Name="cb_team"/>
 
         <Button Click="bt_Create_Click" Content="Create" Name="bt_Create"/> 
     </StackPanel>

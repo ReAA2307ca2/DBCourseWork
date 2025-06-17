@@ -26,15 +26,18 @@ namespace DBCourseWork.Views
         {
             _context = context;
             InitializeComponent();
+            cb_team.ItemsSource = _context.Teams.ToList();
         }
 
         private void bt_Create_Click(object sender, RoutedEventArgs e)
         {
+            Team? team = cb_team.SelectedItem != null ? (Team)cb_team.SelectedItem : null;
             User newUser = new()
             {
                 Name = tb_Name.Text,
                 password = tb_password.Text,
-                Role = _context.Roles.FirstOrDefault(r => r.Name == "user")
+                Role = _context.Roles.FirstOrDefault(r => r.Name == "user"),
+                Team = team
             };
             _context.Users.Add(newUser);
             _context.SaveChanges();

@@ -7,16 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <TabControl>
-        <TabItem Header="Order">
-            <StackPanel Orientation="Horizontal">
-                <ListBox Name="lb_Orders" Width="600"></ListBox>
-                <StackPanel Margin="15 0 0 0">
-                    <Button Click="bt_createOrder_Click" Name="bt_createOrder" Content="Add new"/>
-                    <Button Click="bt_deleteOrder_Click" Name="bt_deleteOrder" Content="Delete"/>
-                </StackPanel>
-            </StackPanel>
-        </TabItem>
-
         <TabItem Header="Workers">
             <StackPanel Orientation="Horizontal">
                 <ListBox Name="lb_Workers" Width="600"></ListBox>
@@ -27,12 +17,43 @@
             </StackPanel>
         </TabItem>
 
+        <TabItem Header="Teams">
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="lb_Teams" Width="600"></ListBox>
+                <StackPanel Margin="15 0 0 0">
+                    <Button Click="bt_createTeam_Click" Name="bt_createTeam" Content="Add new"/>
+                    <Button Click="bt_deleteTeam_Click" Name="bt_deleteTeam" Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Order">
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="lb_Orders" Width="600"></ListBox>
+                <StackPanel Margin="15 0 0 0">
+                    <Button Click="bt_createOrder_Click" Name="bt_createOrder" Content="Add new"/>
+                    <Button Click="bt_deleteOrder_Click" Name="bt_deleteOrder" Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+
         <TabItem Header="Tasks">
             <StackPanel Orientation="Horizontal">
                 <ListBox Name="lb_Tasks" Width="600"></ListBox>
                 <StackPanel Margin="15 0 0 0">
                     <Button Click="bt_createTask_Click" Name="bt_createTask" Content="Add new"/>
                     <Button Click="bt_deleteTask_Click" Name="bt_deleteTask" Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Furniture">
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="lb_furniture" Width="600"></ListBox>
+                <StackPanel Margin="15 0 0 0">
+                    <Button Click="bt_createFurniture_Click" Name="bt_createFurniture" Content="Add new"/>
+                    <Button Click="bt_deleteFurniture_Click" Name="bt_deleteFurniture" Content="Delete"/>
                 </StackPanel>
             </StackPanel>
         </TabItem>

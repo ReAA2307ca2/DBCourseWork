@@ -13,12 +13,25 @@ public partial class ReAaContext : DbContext
     public DbSet<Client> Clients { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Models.Task> Tasks { get; set; }
+    public DbSet<Furniture> Furnitures { get; set; }
+    public DbSet<Team> Teams { get; set; }
+
     public ReAaContext()
     {
-        Database.EnsureDeleted();
-        Database.EnsureCreated();
+        
+        if(Database.EnsureCreated() == true)
+        {
+            SetUp();
+        }
 
-        SetUp();
+        Roles.Load();
+        Users.Load();
+        Clients.Load();
+        Orders.Load();
+        Tasks.Load();
+        Furnitures.Load();
+        Teams.Load();
+
     }
 
     private void SetUp()

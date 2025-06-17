@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DBCourseWork.Views"
         mc:Ignorable="d"
-        Title="CreateNewTaskWindow" Height="250" Width="200">
+        Title="CreateNewTaskWindow" Height="500" Width="200">
     <StackPanel>
+        <Label Content="Order"></Label>
+        <ComboBox Name="cb_Orders"/>
+
         <Label Content="Stage"></Label>
         <TextBox Name="tb_Stage" />
 

@@ -40,7 +40,8 @@ namespace DBCourseWork
                         uc_MainControl.Content = adminWin;
                         break;
                     case "user":
-                        
+                        UserUC userWin = new UserUC(_context);
+                        uc_MainControl.Content = userWin;
                         break;
                 }
             }
