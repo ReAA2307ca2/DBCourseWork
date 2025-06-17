@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DBCourseWork.Data;
+using DBCourseWork.Views;
 
 namespace DBCourseWork
 {
@@ -16,10 +18,20 @@ namespace DBCourseWork
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ReAaContext _context = new();
         
         public MainWindow()
         {
+            if(UserCookies.LoggedUser == null)
+            {
+                RegisterWindow regWin = new RegisterWindow(_context);
+                if(regWin.ShowDialog() != true)
+                {
+                    this.Close();
+                }
+            }
             InitializeComponent();
+            
         }
     }
 }

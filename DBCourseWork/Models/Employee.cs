@@ -15,6 +15,10 @@ public partial class Employee
 
     public int? FkRole { get; set; }
 
+    public string? Login { get; set; }
+
+    public string? Password { get; set; }
+
     public virtual Role? FkRoleNavigation { get; set; }
 
     public virtual Team? FkTeamNavigation { get; set; }

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using DBCourseWork.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBCourseWork.Models;
+namespace DBCourseWork.Data;
 
 public partial class ReAaContext : DbContext
 {
     public ReAaContext()
     {
+        if(Roles)
     }
 
     public ReAaContext(DbContextOptions<ReAaContext> options)
@@ -115,7 +117,9 @@ public partial class ReAaContext : DbContext
             entity.Property(e => e.FkRole).HasColumnName("FK_Role");
             entity.Property(e => e.FkTeam).HasColumnName("FK_Team");
             entity.Property(e => e.FkWorkplace).HasColumnName("FK_Workplace");
+            entity.Property(e => e.Login).HasMaxLength(255);
             entity.Property(e => e.Name).HasMaxLength(255);
+            entity.Property(e => e.Password).HasMaxLength(255);
 
             entity.HasOne(d => d.FkRoleNavigation).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.FkRole)
@@ -410,6 +414,12 @@ public partial class ReAaContext : DbContext
                 .HasForeignKey(d => d.FkSite)
                 .HasConstraintName("FK__Workplace__FK_Si__269AB60B");
         });
+
+
+        modelBuilder.Entity<Role>().HasData(
+            new Role() { Name = "Admin"},
+            new Role() { Name = "Employee"}
+            );
 
         OnModelCreatingPartial(modelBuilder);
     }
